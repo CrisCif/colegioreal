@@ -38,7 +38,7 @@ export default function TablaUsuarios() {
     const { 
         data: usuarios, 
         isLoading,
-        deleteMutation
+        deleteUser
     } = useUsers();
 
     const canEdit = permissions.checkEntity('USER', 'UPDATE');
@@ -85,7 +85,7 @@ export default function TablaUsuarios() {
     const handleDeleteUser = async () => {
         if (userToDelete && canDelete) {
             try {
-                await deleteMutation.mutateAsync(userToDelete.id);
+                deleteUser(userToDelete.id);
                 setOpenDeleteDialog(false);
                 setUserToDelete(null);
             } catch (error) {
